@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class HologramRender : MonoBehaviour {
 
@@ -23,6 +25,10 @@ public class HologramRender : MonoBehaviour {
 
     private MaterialPropertyBlock mHologramMatProps;
 
+    public VideoPlayer vp;
+
+    public RawImage prevImage;
+
     // Use this for initialization
     void Start () {
 
@@ -39,12 +45,36 @@ public class HologramRender : MonoBehaviour {
 
         if (mHologramMatProps == null)
         {
-            mHologramMatProps = new MaterialPropertyBlock();
-            //only once
-            mHologramMatProps.SetTexture("_MainTex", mTextureSource);
+            
+
+            if(vp != null)
+            {
+                if (vp.isPrepared)
+                {
+                    mHologramMatProps = new MaterialPropertyBlock();
+                    //only once
+                    mHologramMatProps.SetTexture("_MainTex", vp.texture);
+
+                    prevImage.texture = vp.texture;
+                }
+
+            }
+            else
+            {
+                mHologramMatProps = new MaterialPropertyBlock();
+                //only once
+                mHologramMatProps.SetTexture("_MainTex", mTextureSource);
+
+                prevImage.texture = vp.texture;
+            }
+
+        }
+        else
+        {
+            mHologramMatProps.SetFloat("_PointSize", PointSize);
         }
 
-        mHologramMatProps.SetFloat("_PointSize", PointSize);
+       
 
 
         if (!UseGLStyle)
