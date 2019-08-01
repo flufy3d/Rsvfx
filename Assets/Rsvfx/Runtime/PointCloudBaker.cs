@@ -23,7 +23,7 @@ namespace Rsvfx
         [SerializeField, Range(0, 1)] float _brightness = 0;
         [SerializeField, Range(0, 1)] float _saturation = 1;
 
-        [SerializeField, HideInInspector] ComputeShader _compute = null;
+        public ComputeShader _compute = null;
 
         #endregion
 
