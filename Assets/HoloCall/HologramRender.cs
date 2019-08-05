@@ -65,7 +65,7 @@ public class HologramRender : MonoBehaviour {
                 //only once
                 mHologramMatProps.SetTexture("_MainTex", mTextureSource);
 
-                prevImage.texture = vp.texture;
+                prevImage.texture = mTextureSource;
             }
 
         }
