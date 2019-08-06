@@ -86,7 +86,7 @@ MonoBehaviour:
     x: -127
     y: -464
     width: 1210
-    height: 1259
+    height: 1260
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1028,7 +1028,7 @@ VisualEffectResource:
         - m_ExpressionIndex: 13
           m_Value: 0
         - m_ExpressionIndex: 14
-          m_Value: 0.2
+          m_Value: 0.2789173
         - m_ExpressionIndex: 15
           m_Value: 2
         - m_ExpressionIndex: 16
@@ -1042,7 +1042,7 @@ VisualEffectResource:
         - m_ExpressionIndex: 22
           m_Value: 2
         - m_ExpressionIndex: 23
-          m_Value: 0.003
+          m_Value: 0.006
       m_Vector2f:
         m_Array: []
       m_Vector3f:
@@ -1487,7 +1487,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.2
+      m_SerializableObject: 0.2789173
     m_Space: 2147483647
   m_Property:
     name: alphaThreshold
@@ -1553,7 +1553,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.003
+      m_SerializableObject: 0.006
     m_Space: 2147483647
   m_Property:
     name: Size

@@ -1,18 +1,82 @@
 ﻿// Each #kernel tells which function to compile; you can have many kernels
 #pragma kernel CSMain
 
-RWTexture2D<float4> SourceMap;
+Texture2D<float4> SourceMap;
 
 RWTexture2D<float4> ColorMap;
 
 RWTexture2D<float4> PositionMap;
 
+float3 rgb2hsl(float3 color) {
+	float h = 0.0;
+	float s = 0.0;
+	float l = 0.0;
+	float r = color.r;
+	float g = color.g;
+	float b = color.b;
+	float cMin = min(r, min(g, b));
+	float cMax = max(r, max(g, b));
+	l = (cMax + cMin) / 2.0;
+	if (cMax > cMin) {
+		float cDelta = cMax - cMin;
+		// saturation
+		if (l < 0.5) {
+			s = cDelta / (cMax + cMin);
+		}
+		else {
+			s = cDelta / (2.0 - (cMax + cMin));
+		}
+		// hue
+		if (r == cMax) {
+			h = (g - b) / cDelta;
+		}
+		else if (g == cMax) {
+			h = 2.0 + (b - r) / cDelta;
+		}
+		else {
+			h = 4.0 + (r - g) / cDelta;
+		}
+		if (h < 0.0) {
+			h += 6.0;
+		}
+		h = h / 6.0;
+	}
+	return float3(h, s, l);
+}
+
+float depth_fix(float z)
+{
+	const float minD = 555.0;
+	const float maxD = 1005.0;
+
+	float ret = (maxD - minD)*z + minD;
+	ret = ret / 1000.0;
+
+	return ret;
+}
+
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    // TODO: insert actual code here!
+	int wAmount = 640;
+	int hAmount = 480;
+	int normConst = hAmount;
+    
+	float4 color = SourceMap[float2(id.x + wAmount,id.y)];
 
-	ColorMap[id.xy] = float4(id.x & id.y, (id.x & 15)/15.0, (id.y & 15)/15.0, 1.0);
+	float4 pos = SourceMap[float2(id.x , id.y)];
 
-	PositionMap[id.xy] = float4(0.001*id.x, 0.002*id.y, 0.05 + 0.0005*id.x, 1.0);
+	float3 hsl = rgb2hsl(pos.xyz);
+
+	bool mask = hsl.z * 2.0 > 0.05;
+
+
+	ColorMap[id.xy] = float4(color.xyz, mask);
+
+	
+	float x = (id.x - (0.5f * wAmount)) / normConst;
+	float y = (id.y - (0.5f *hAmount)) / normConst;
+	float z = depth_fix(hsl.x);
+
+	PositionMap[id.xy] = float4(x, y, z, mask);
 }
