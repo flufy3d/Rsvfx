@@ -130,6 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 134211116}
   - component: {fileID: 134211117}
+  - component: {fileID: 134211118}
   m_Layer: 0
   m_Name: Video Player
   m_TagString: Untagged
@@ -183,6 +184,21 @@ VideoPlayer:
   m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
+--- !u!114 &134211118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134211115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fcf76f5c80bf041aee8c3bd02dc34e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorMap: {fileID: 0}
+  _positionMap: {fileID: 0}
+  _compute: {fileID: 7200000, guid: ed649d2969dc02a46bd9111a66b8752f, type: 3}
 --- !u!1 &280754176
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,6 +367,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RealSenseVGA60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528475295553199702, guid: c82362958e30b982d9e203a51a75abeb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1528475295553199707, guid: c82362958e30b982d9e203a51a75abeb,
         type: 3}
@@ -805,6 +826,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2095535229}
   - component: {fileID: 2095535228}
+  - component: {fileID: 2095535230}
   m_Layer: 0
   m_Name: hologram
   m_TagString: Untagged
@@ -846,6 +868,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2095535230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095535227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fcf76f5c80bf041aee8c3bd02dc34e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorMap: {fileID: 8400000, guid: bd63a140f3a541d4387793f577e0078d, type: 2}
+  _positionMap: {fileID: 8400000, guid: 5dbbb3e175252b74fac9ce70930f6c0d, type: 2}
+  _compute: {fileID: 7200000, guid: ed649d2969dc02a46bd9111a66b8752f, type: 3}
 --- !u!1 &2113531560
 GameObject:
   m_ObjectHideFlags: 0
