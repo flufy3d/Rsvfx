@@ -109,7 +109,7 @@ MonoBehaviour:
     x: -386
     y: -1200
     width: 1386
-    height: 2566
+    height: 2562
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1888,9 +1888,9 @@ VisualEffectResource:
       m_NamedObject:
         m_Array:
         - m_ExpressionIndex: 24
-          m_Value: {fileID: 8400000, guid: e96cdc3b37ad79be39d14ce547fe0da1, type: 2}
+          m_Value: {fileID: 8400000, guid: bd63a140f3a541d4387793f577e0078d, type: 2}
         - m_ExpressionIndex: 26
-          m_Value: {fileID: 8400000, guid: d8e773d5bbad0c05c965e6b888e86b55, type: 2}
+          m_Value: {fileID: 8400000, guid: 5dbbb3e175252b74fac9ce70930f6c0d, type: 2}
         - m_ExpressionIndex: 51
           m_Value: {fileID: 2800000, guid: 029e37fd0dd872420a994b30e051e33b, type: 3}
         - m_ExpressionIndex: 47
@@ -8513,7 +8513,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"d8e773d5bbad0c05c965e6b888e86b55","type":2}}'
+      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"5dbbb3e175252b74fac9ce70930f6c0d","type":2}}'
     m_Space: 2147483647
   m_Property:
     name: texture
@@ -8903,7 +8903,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"e96cdc3b37ad79be39d14ce547fe0da1","type":2}}'
+      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"bd63a140f3a541d4387793f577e0078d","type":2}}'
     m_Space: 2147483647
   m_Property:
     name: texture

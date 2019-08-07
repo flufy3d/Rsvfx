@@ -1073,23 +1073,24 @@ VisualEffectResource:
       \   float tmp_k = age / lifetime;\n\t\t\t\t    float tmp_l = SampleCurve(uniform_b,tmp_k);\n\t\t\t\t
       \   float3 tmp_m = float3(tmp_l, tmp_l, tmp_l);\n\t\t\t\t    SetAttribute_545F0ED(
       /*inout */color, tmp_m);\n\t\t\t\t}\n\t\t\t\t{\n\t\t\t\t    float tmp_k = age
-      / lifetime;\n\t\t\t\t    float tmp_l = saturate(tmp_k);\n\t\t\t\t    float4
-      tmp_m = SampleGradient(uniform_c,tmp_l);\n\t\t\t\t    float tmp_p = color[0];\n\t\t\t\t
-      \   float tmp_q = color[1];\n\t\t\t\t    float tmp_r = color[2];\n\t\t\t\t    float4
-      tmp_t = float4(tmp_p, tmp_q, tmp_r, (float)1);\n\t\t\t\t    float4 tmp_v = tmp_t
-      * float4(0.299,0.587,0.114,0);\n\t\t\t\t    float tmp_w = tmp_v[3];\n\t\t\t\t
-      \   float tmp_x = tmp_v[2];\n\t\t\t\t    float tmp_y = tmp_w + tmp_x;\n\t\t\t\t
-      \   float tmp_z = tmp_v[1];\n\t\t\t\t    float tmp_ba = tmp_y + tmp_z;\n\t\t\t\t
-      \   float tmp_bb = tmp_v[0];\n\t\t\t\t    float tmp_bc = tmp_ba + tmp_bb;\n\t\t\t\t
-      \   float tmp_be = tmp_bc - (float)0.01;\n\t\t\t\t    float tmp_bf = tmp_be
-      / (float)0.01;\n\t\t\t\t    float tmp_bg = saturate(tmp_bf);\n\t\t\t\t    float
-      tmp_bh = (float)2 * tmp_bg;\n\t\t\t\t    float tmp_bi = (float)3 - tmp_bh;\n\t\t\t\t
-      \   float tmp_bj = tmp_bi * tmp_bg;\n\t\t\t\t    float tmp_bk = tmp_bj * tmp_bg;\n\t\t\t\t
-      \   float4 tmp_bl = float4(tmp_bk, tmp_bk, tmp_bk, tmp_bk);\n\t\t\t\t    float4
-      tmp_bm = tmp_m * tmp_bl;\n\t\t\t\t    float tmp_bn = tmp_bm[0];\n\t\t\t\t    float
-      tmp_bo = tmp_bm[1];\n\t\t\t\t    float tmp_bp = tmp_bm[2];\n\t\t\t\t    float3
-      tmp_bq = float3(tmp_bn, tmp_bo, tmp_bp);\n\t\t\t\t    SetAttribute_FA15ADAA(
-      /*inout */color, tmp_bq);\n\t\t\t\t}\n\t\t\t\t\n\n\t\t\t\t\t\t\n\t\t\t\tif (!alive)\n\t\t\t\t\treturn
+      / lifetime;\n\t\t\t\t    float tmp_m = max(tmp_k, (float)0);\n\t\t\t\t    float
+      tmp_o = min(tmp_m, (float)1);\n\t\t\t\t    float4 tmp_p = SampleGradient(uniform_c,tmp_o);\n\t\t\t\t
+      \   float tmp_s = color[0];\n\t\t\t\t    float tmp_t = color[1];\n\t\t\t\t    float
+      tmp_u = color[2];\n\t\t\t\t    float4 tmp_v = float4(tmp_s, tmp_t, tmp_u, (float)1);\n\t\t\t\t
+      \   float4 tmp_x = tmp_v * float4(0.299,0.587,0.114,0);\n\t\t\t\t    float tmp_y
+      = tmp_x[3];\n\t\t\t\t    float tmp_z = tmp_x[2];\n\t\t\t\t    float tmp_ba =
+      tmp_y + tmp_z;\n\t\t\t\t    float tmp_bb = tmp_x[1];\n\t\t\t\t    float tmp_bc
+      = tmp_ba + tmp_bb;\n\t\t\t\t    float tmp_bd = tmp_x[0];\n\t\t\t\t    float
+      tmp_be = tmp_bc + tmp_bd;\n\t\t\t\t    float tmp_bg = tmp_be - (float)0.01;\n\t\t\t\t
+      \   float tmp_bh = tmp_bg / (float)0.01;\n\t\t\t\t    float tmp_bi = max(tmp_bh,
+      (float)0);\n\t\t\t\t    float tmp_bj = min(tmp_bi, (float)1);\n\t\t\t\t    float
+      tmp_bk = (float)2 * tmp_bj;\n\t\t\t\t    float tmp_bl = (float)3 - tmp_bk;\n\t\t\t\t
+      \   float tmp_bm = tmp_bl * tmp_bj;\n\t\t\t\t    float tmp_bn = tmp_bm * tmp_bj;\n\t\t\t\t
+      \   float4 tmp_bo = float4(tmp_bn, tmp_bn, tmp_bn, tmp_bn);\n\t\t\t\t    float4
+      tmp_bp = tmp_p * tmp_bo;\n\t\t\t\t    float tmp_bq = tmp_bp[0];\n\t\t\t\t    float
+      tmp_br = tmp_bp[1];\n\t\t\t\t    float tmp_bs = tmp_bp[2];\n\t\t\t\t    float3
+      tmp_bt = float3(tmp_bq, tmp_br, tmp_bs);\n\t\t\t\t    SetAttribute_FA15ADAA(
+      /*inout */color, tmp_bt);\n\t\t\t\t}\n\t\t\t\t\n\n\t\t\t\t\t\t\n\t\t\t\tif (!alive)\n\t\t\t\t\treturn
       o;\n\t\t\t\n\t\t\t\t#if TARGET_FROM_ATTRIBUTES\n\t\t\t\t\n\t\t\t\t\t\tfloat3
       size3 = float3(size,size,size);\n\t\t\t\t\t\t#if VFX_USE_SCALEX_CURRENT\n\t\t\t\t\t\tsize3.x
       *= scaleX;\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t#if VFX_USE_SCALEY_CURRENT\n\t\t\t\t\t\tsize3.y
@@ -1209,13 +1210,13 @@ VisualEffectResource:
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 7
+        data[3]: 1
       - op: 1
-        valueIndex: 31
+        valueIndex: 30
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 1
+        data[3]: 7
       - op: 1
         valueIndex: 32
         data[0]: -1
@@ -1374,10 +1375,10 @@ VisualEffectResource:
         m_Array:
         - m_ExpressionIndex: 0
           m_Value: 1
-        - m_ExpressionIndex: 13
-          m_Value: 0
-        - m_ExpressionIndex: 14
+        - m_ExpressionIndex: 12
           m_Value: 0.01
+        - m_ExpressionIndex: 14
+          m_Value: 0
         - m_ExpressionIndex: 15
           m_Value: 2
         - m_ExpressionIndex: 16
@@ -1511,9 +1512,9 @@ VisualEffectResource:
       m_NamedObject:
         m_Array:
         - m_ExpressionIndex: 11
-          m_Value: {fileID: 8400000, guid: e96cdc3b37ad79be39d14ce547fe0da1, type: 2}
-        - m_ExpressionIndex: 12
-          m_Value: {fileID: 8400000, guid: d8e773d5bbad0c05c965e6b888e86b55, type: 2}
+          m_Value: {fileID: 8400000, guid: bd63a140f3a541d4387793f577e0078d, type: 2}
+        - m_ExpressionIndex: 13
+          m_Value: {fileID: 8400000, guid: 5dbbb3e175252b74fac9ce70930f6c0d, type: 2}
       m_Bool:
         m_Array: []
     m_ExposedExpressions: []
@@ -1727,7 +1728,7 @@ VisualEffectResource:
         index: 2
       values:
       - nameId: texture_b
-        index: 12
+        index: 13
       - nameId: texture_c
         index: 11
       params:
@@ -1856,7 +1857,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"d8e773d5bbad0c05c965e6b888e86b55","type":2}}'
+      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"5dbbb3e175252b74fac9ce70930f6c0d","type":2}}'
     m_Space: 2147483647
   m_Property:
     name: texture
@@ -3609,7 +3610,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"d8e773d5bbad0c05c965e6b888e86b55","type":2}}'
+      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"5dbbb3e175252b74fac9ce70930f6c0d","type":2}}'
     m_Space: 2147483647
   m_Property:
     name: texture
@@ -6484,7 +6485,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"e96cdc3b37ad79be39d14ce547fe0da1","type":2}}'
+      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"bd63a140f3a541d4387793f577e0078d","type":2}}'
     m_Space: 2147483647
   m_Property:
     name: texture

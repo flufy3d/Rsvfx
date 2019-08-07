@@ -337,16 +337,16 @@ VisualEffectResource:
       color = asfloat(attributeBuffer.Load3((index * 0xC + 0x8) << 2));\n\t\t\t\t\t\tfloat
       lifetime = asfloat(attributeBuffer.Load((index * 0x1 + 0x493E00) << 2));\n\t\t\t\t\t\tfloat
       age = asfloat(attributeBuffer.Load((index * 0x2 + 0x4F5881) << 2));\n\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\n\t\t\t\t{\n\t\t\t\t
-      \   float tmp_k = color[2];\n\t\t\t\t    float tmp_l = saturate(tmp_k);\n\t\t\t\t
-      \   float4 tmp_m = SampleGradient(uniform_b,tmp_l);\n\t\t\t\t    float tmp_n
-      = color[0];\n\t\t\t\t    float tmp_o = age / lifetime;\n\t\t\t\t    float tmp_q
-      = tmp_o * (float)2;\n\t\t\t\t    float tmp_r = tmp_n + tmp_q;\n\t\t\t\t    float
-      tmp_t = tmp_r - (float)1;\n\t\t\t\t    float tmp_u = saturate(tmp_t);\n\t\t\t\t
-      \   float4 tmp_v = SampleGradient(uniform_c,tmp_u);\n\t\t\t\t    float4 tmp_w
-      = tmp_m * tmp_v;\n\t\t\t\t    float tmp_x = tmp_w[0];\n\t\t\t\t    float tmp_y
-      = tmp_w[1];\n\t\t\t\t    float tmp_z = tmp_w[2];\n\t\t\t\t    float3 tmp_ba
-      = float3(tmp_x, tmp_y, tmp_z);\n\t\t\t\t    SetAttribute_FDD06EC7( /*inout */color,
-      tmp_ba);\n\t\t\t\t}\n\t\t\t\t\n\n\t\t\t\t\t\t\n\t\t\t\tif (!alive)\n\t\t\t\t\treturn
+      \   float tmp_k = color[2];\n\t\t\t\t    float tmp_m = max(tmp_k, (float)0);\n\t\t\t\t
+      \   float tmp_o = min(tmp_m, (float)1);\n\t\t\t\t    float4 tmp_p = SampleGradient(uniform_b,tmp_o);\n\t\t\t\t
+      \   float tmp_q = color[0];\n\t\t\t\t    float tmp_r = age / lifetime;\n\t\t\t\t
+      \   float tmp_t = tmp_r * (float)2;\n\t\t\t\t    float tmp_u = tmp_q + tmp_t;\n\t\t\t\t
+      \   float tmp_v = tmp_u - (float)1;\n\t\t\t\t    float tmp_w = max(tmp_v, (float)0);\n\t\t\t\t
+      \   float tmp_x = min(tmp_w, (float)1);\n\t\t\t\t    float4 tmp_y = SampleGradient(uniform_c,tmp_x);\n\t\t\t\t
+      \   float4 tmp_z = tmp_p * tmp_y;\n\t\t\t\t    float tmp_ba = tmp_z[0];\n\t\t\t\t
+      \   float tmp_bb = tmp_z[1];\n\t\t\t\t    float tmp_bc = tmp_z[2];\n\t\t\t\t
+      \   float3 tmp_bd = float3(tmp_ba, tmp_bb, tmp_bc);\n\t\t\t\t    SetAttribute_FDD06EC7(
+      /*inout */color, tmp_bd);\n\t\t\t\t}\n\t\t\t\t\n\n\t\t\t\t\t\t\n\t\t\t\tif (!alive)\n\t\t\t\t\treturn
       o;\n\t\t\t\n\t\t\t\t#if TARGET_FROM_ATTRIBUTES\n\t\t\t\t\n\t\t\t\t\t\tfloat3
       size3 = float3(size,size,size);\n\t\t\t\t\t\t#if VFX_USE_SCALEX_CURRENT\n\t\t\t\t\t\tsize3.x
       *= scaleX;\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t#if VFX_USE_SCALEY_CURRENT\n\t\t\t\t\t\tsize3.y
@@ -495,13 +495,13 @@ VisualEffectResource:
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 4
+        data[3]: 1
       - op: 1
-        valueIndex: 17
+        valueIndex: 14
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 1
+        data[3]: 4
       - op: 1
         valueIndex: 18
         data[0]: -1
@@ -640,7 +640,7 @@ VisualEffectResource:
           m_Value: 1
         - m_ExpressionIndex: 8
           m_Value: 0
-        - m_ExpressionIndex: 12
+        - m_ExpressionIndex: 11
           m_Value: 2
         - m_ExpressionIndex: 13
           m_Value: 1
@@ -664,7 +664,7 @@ VisualEffectResource:
           m_Value: {x: 1, y: 1, z: 1}
       m_Vector4f:
         m_Array:
-        - m_ExpressionIndex: 11
+        - m_ExpressionIndex: 12
           m_Value: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
         - m_ExpressionIndex: 15
           m_Value: {x: 0.299, y: 0.587, z: 0.114, w: 0}
@@ -745,9 +745,9 @@ VisualEffectResource:
       m_NamedObject:
         m_Array:
         - m_ExpressionIndex: 9
-          m_Value: {fileID: 8400000, guid: d8e773d5bbad0c05c965e6b888e86b55, type: 2}
+          m_Value: {fileID: 8400000, guid: 5dbbb3e175252b74fac9ce70930f6c0d, type: 2}
         - m_ExpressionIndex: 10
-          m_Value: {fileID: 8400000, guid: e96cdc3b37ad79be39d14ce547fe0da1, type: 2}
+          m_Value: {fileID: 8400000, guid: bd63a140f3a541d4387793f577e0078d, type: 2}
       m_Bool:
         m_Array: []
     m_ExposedExpressions:
@@ -2133,7 +2133,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"d8e773d5bbad0c05c965e6b888e86b55","type":2}}'
+      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"5dbbb3e175252b74fac9ce70930f6c0d","type":2}}'
     m_Space: 2147483647
   m_Property:
     name: texture
@@ -2757,7 +2757,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"e96cdc3b37ad79be39d14ce547fe0da1","type":2}}'
+      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"bd63a140f3a541d4387793f577e0078d","type":2}}'
     m_Space: 2147483647
   m_Property:
     name: texture
@@ -3670,7 +3670,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"d8e773d5bbad0c05c965e6b888e86b55","type":2}}'
+      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"5dbbb3e175252b74fac9ce70930f6c0d","type":2}}'
     m_Space: 2147483647
   m_Property:
     name: texture
@@ -4060,7 +4060,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"e96cdc3b37ad79be39d14ce547fe0da1","type":2}}'
+      m_SerializableObject: '{"obj":{"fileID":8400000,"guid":"bd63a140f3a541d4387793f577e0078d","type":2}}'
     m_Space: 2147483647
   m_Property:
     name: texture
